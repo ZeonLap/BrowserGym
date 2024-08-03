@@ -6,6 +6,7 @@ async ([parent_bid, bid_attr_name]) => {
 
     // standard html tags
     // https://www.w3schools.com/tags/
+    // TODO: miniwob
     const html_tags = new Set([
         "a", "abbr", "acronym", "address", "applet", "area", "article", "aside", "audio",
         "b", "base", "basefont", "bdi", "bdo", "big", "blockquote", "body", "br", "button",
@@ -16,10 +17,10 @@ async ([parent_bid, bid_attr_name]) => {
         "iframe", "img", "input", "ins", "kbd", "label", "legend", "li", "link", "main",
         "map", "mark", "menu", "meta", "meter", "nav", "noframes", "noscript", "object",
         "ol", "optgroup", "option", "output", "p", "param", "picture", "pre", "progress",
-        "q", "rp", "rt", "ruby", "s", "samp", "script", "search", "section", "select",
+        "q", "rect", "rp", "rt", "ruby", "s", "samp", "script", "search", "section", "select",
         "small", "source", "span", "strike", "strong", "style", "sub", "summary", "sup",
-        "svg", "table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead",
-        "time", "title", "tr", "track", "tt", "u", "ul", "var", "video", "wbr"
+        "svg", "table", "tbody", "td", "template", "text", "textarea", "tfoot", "th", 
+        "thead", "time", "title", "tr", "track", "tt", "u", "ul", "var", "video", "wbr"
     ]);
     const set_of_marks_tags = new Set([
         "input", "textarea", "select", "button", "a", "iframe", "video", "li", "td", "option"

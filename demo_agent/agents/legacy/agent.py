@@ -96,6 +96,8 @@ does not support vision. Disabling use_screenshot."""
             thoughts=self.thoughts,
             flags=self.flags,
         )
+        
+        print(main_prompt.obs.html._prompt)
 
         # Determine the minimum non-None token limit from prompt, total, and input tokens, or set to None if all are None.
         maxes = (
