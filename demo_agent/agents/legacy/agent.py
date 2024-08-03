@@ -59,7 +59,7 @@ class GenericAgent(Agent):
         self,
         chat_model_args: ChatModelArgs = None,
         flags: dynamic_prompting.Flags = None,
-        max_retry: int = 4,
+        max_retry: int = 8,
     ):
         self.chat_model_args = chat_model_args if chat_model_args is not None else ChatModelArgs()
         self.flags = flags if flags is not None else dynamic_prompting.Flags()
@@ -96,8 +96,6 @@ does not support vision. Disabling use_screenshot."""
             thoughts=self.thoughts,
             flags=self.flags,
         )
-        
-        print(main_prompt.obs.html._prompt)
 
         # Determine the minimum non-None token limit from prompt, total, and input tokens, or set to None if all are None.
         maxes = (

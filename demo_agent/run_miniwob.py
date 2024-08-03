@@ -4,6 +4,7 @@ WARNING DEPRECATED WILL BE REMOVED SOON
 
 import gymnasium as gym
 import argparse
+import os
 from pathlib import Path
 
 from browsergym.experiments import ExpArgs, EnvArgs
@@ -15,8 +16,15 @@ from agents.legacy.utils.chat_api import ChatModelArgs
 
 def get_miniwob_tasks():
     import browsergym.miniwob  # register miniwob tasks as gym environments
+    try:
+        result_dirs = [d for d in os.listdir("results-bid") if os.path.isdir(os.path.join("results-bid", d))]
+        result_dirs = [d.split("_")[-3] for d in result_dirs]
+    except Exception:
+        result_dirs = []
     env_ids = [id for id in gym.envs.registry.keys() if id.startswith("browsergym/miniwob")]
     task_names = [id.split("/")[-1] for id in env_ids]
+    task_names = [id for id in task_names if id not in result_dirs]
+
     return task_names
 
 
@@ -35,14 +43,11 @@ def main():
     task_names = get_miniwob_tasks()
 
     for idx, task_name in enumerate(task_names):
-        if idx >= 3:
-            break
         env_args = EnvArgs(
             task_name=task_name,
             task_seed=None,
             max_steps=10,
             headless=True,
-            slow_mo=500,
         )
 
         exp_args = ExpArgs(
@@ -75,7 +80,7 @@ def main():
             ),
         )
 
-        exp_args.prepare(Path("./results"))
+        exp_args.prepare(Path("./results-bid"))
         exp_args.run()
 
 
